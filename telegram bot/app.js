@@ -1,10 +1,6 @@
 const telegramBot = require('node-telegram-bot-api');
 const natural = require('natural');
 const apostToLexForm = require('apos-to-lex-form');
-const stopWord = require('stopword');
-const SpellCorrector = require('spelling-corrector');
-const spellCorrector = new SpellCorrector()
-spellCorrector.loadDictionary();
 
 
 require('dotenv').config();

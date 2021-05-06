@@ -2,7 +2,7 @@
 
 To make a bot, we have to call the BotFather. 
 
-At first, log in to your telegram account in your desktop telegram app or telegram web. After you are logged in, search `@botfather` . You'll see this
+At first, log in to your telegram account in your desktop telegram app or telegram web. After you are logged in, search `@botfather`. You'll see this
 
 ![botfather](assets/botfather.png)
 Now, 
@@ -17,11 +17,11 @@ Now,
 
     Save this token. 
  
-Now, search for your bot with  `@BOT_USERNAME` and click start button.
+Now, search for your bot with  `@BOT_USERNAME` and click the start button.
 
 ## Configure the bot
 
-Now, configure your telegram bot. Here, i used nodejs and `node-telegram-bot-api` module to connect with my bot.
+Now, configure your telegram bot. Here, I used nodejs and `node-telegram-bot-api` module to connect with my bot.
 
 To connect with your bot.
 
@@ -43,8 +43,15 @@ api.onText(/\/start/, (msg, match) => {
     api.sendMessage(fromId, welcomeMessage);
 });
 ```
-This is the basic format of configure your telegram bot. 
+This is the basic format of configuring your telegram bot. 
 
-Here I implemented a basic sentiment analyzer. This bot will respond according to your text.
-Here's an example.
+Here I implemented a basic sentiment analyzer. This bot will respond according to your text. If the value of the analyzer is positive, it'll send smiley emoji, if negative then upset emoji & neutral emoji if 0. If no text messages are sent, it'll send 🥺 this emoji. UwU   
+## Flow of analysis
+- converting contractions (e.g., I’m, you’re, etc.) to their standard lexicon. (i.e., I am, you are, etc.)
+- making all characters lowercase.
+- Removing non-alphabetical and special characters
+- Tokenizing, splitting a text into its meaningful units.
+- Analyzing sentiment with the [natural](https://github.com/NaturalNode/natural) library.   
+## Here's the bot.
+![UwU-home](assets/home.jpg)
 ![UwU](assets/uwu.jpg)
