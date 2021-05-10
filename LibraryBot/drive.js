@@ -91,7 +91,7 @@ async function listFolders(auth, params) {
     let files;
     await drive.files.list({
         "q": `'${id}' in parents`,
-        "fields": "files(name,id,mimeType,parents,md5Checksum)"
+        "fields": "files(name,id,mimeType,parents,md5Checksum,size)"
     }).then(res => {
         files = res.data.files;
     }).catch(err => {
