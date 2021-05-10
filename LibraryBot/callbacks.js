@@ -24,7 +24,7 @@ exports.menuCallback = async ctx => {
             temp.name = file.name;
             mainList.folders.push(temp);
         });
-        console.log(mainList.folders.pop());
+        mainList.folders.pop();
     }
 
     mainList.folders.map(file => {
@@ -38,7 +38,8 @@ exports.menuCallback = async ctx => {
 
     });
 
-    ctx.deleteMessage();
+    ctx.deleteMessage()
+        .catch(err => console.log(`error occurred removing message!!!`));
     ctx.telegram.sendMessage(ctx.chat.id, " *The menu of files* ", {
         parse_mode: "Markdown",
         reply_markup: {
@@ -120,7 +121,8 @@ exports.query_callback = async(ctx) => {
         }
 
         inline_keyboard_data.push([temp]);
-        ctx.deleteMessage();
+        ctx.deleteMessage()
+            .catch(err => console.log(`error occurred removing message!!!`));
         ctx.telegram.sendMessage(ctx.chat.id, " *The menu of files* ", {
             parse_mode: "Markdown",
             reply_markup: {
@@ -133,7 +135,8 @@ exports.query_callback = async(ctx) => {
         await mainList.files.map(async(file) => {
             if (file.id == data[1]) {
                 if (file.telegram_id != null) {
-                    ctx.deleteMessage();
+                    ctx.deleteMessage()
+                        .catch(err => console.log(`error occurred removing message!!!`));
                     ctx.telegram.sendChatAction(ctx.chat.id, "upload_document");
                     ctx.telegram.sendDocument(ctx.chat.id, file.telegram_id)
                         .catch(err => {
@@ -148,7 +151,8 @@ exports.query_callback = async(ctx) => {
                     await downloadPdf(file.id + '', file.name);
                     await isDownloaded(file)
                     console.log('mama *_*');
-                    ctx.deleteMessage();
+                    ctx.deleteMessage()
+                        .catch(err => console.log(`error occurred removing message!!!`));
 
                     ctx.telegram.sendChatAction(ctx.chat.id, "upload_document");
                     ctx.telegram.sendDocument(ctx.chat.id, {
